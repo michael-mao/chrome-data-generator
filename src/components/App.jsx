@@ -1,6 +1,7 @@
 import { h } from 'preact';
 import { Router } from 'preact-router';
 
+import paths from '../routePaths';
 import NavTabs from './core/NavTabs';
 import Redirect from './core/Redirect';
 import GeneratorPage from './pages/GeneratorPage';
@@ -10,9 +11,9 @@ const App = props => {
 	return (
 		<div id="app">
 			<Router>
-				<GeneratorPage path="/generator" />
-				<SettingsPage path="/settings" />
-				<Redirect default to="/generator" />
+				<GeneratorPage path={paths.generator} />
+				<SettingsPage path={paths.settings} />
+				<Redirect default to={paths.generator} />
 			</Router>
 			<NavTabs />
 		</div>

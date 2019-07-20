@@ -2,6 +2,8 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { route, getCurrentUrl } from 'preact-router';
 
+import paths from '../../routePaths';
+
 const NavTabs = props => {
   const [currentPath, setCurrentPath] = useState(getCurrentUrl());
 
@@ -15,13 +17,13 @@ const NavTabs = props => {
   };
 
   return (
-    <div className="tabs is-fullwidth is-centered is-large">
+    <div className="tabs is-fullwidth is-centered">
       <ul>
-        <li className={isActive('/')}>
-          <a onClick={() => linkTo('/')}>Generator</a>
+        <li className={isActive(paths.generator)}>
+          <a onClick={() => linkTo(paths.generator)}>Generator</a>
         </li>
-        <li className={isActive('/settings')}>
-          <a onClick={() => linkTo('/settings')}>Settings</a>
+        <li className={isActive(paths.settings)}>
+          <a onClick={() => linkTo(paths.settings)}>Settings</a>
         </li>
       </ul>
     </div>
