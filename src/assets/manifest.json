@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Data Generator",
+  "author": "Michael Mao <m.mao@outlook.com>",
+  "version": "0.0.1",
+  "description": "Generate fake data for development.",
+  "browser_action": {
+    "default_title": "Data Generator",
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "32": "assets/icons/icon32.png"
+    }
+  }
+}
