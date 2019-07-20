@@ -8,16 +8,16 @@ import GeneratorPage from './pages/GeneratorPage';
 import SettingsPage from './pages/SettingsPage';
 
 const App = props => {
-	return (
-		<div id="app">
-			<Router>
-				<GeneratorPage path={paths.generator} />
-				<SettingsPage path={paths.settings} />
-				<Redirect default to={paths.generator} />
-			</Router>
-			<NavTabs />
-		</div>
-	);
+  return (
+    <div id="app">
+      <Router>
+        <GeneratorPage path={paths.generator} />
+        <SettingsPage path={paths.settings} />
+        <Redirect default to={paths.generator} />
+      </Router>
+      <NavTabs />
+    </div>
+  );
 }
 
 export default App;
