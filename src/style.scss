@@ -1,8 +1,8 @@
+@import '~bulma/bulma.sass';
+
 html, body {
   height: 500px;
   width: 300px;
-  padding: 0;
-  margin: 0;
   background: #FAFAFA;
   font-family: 'Helvetica Neue', arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -23,6 +23,10 @@ html, body {
   width: 100%;
   position: absolute;
   bottom: 0;
+
+  a {
+    border-bottom-width: 2px;
+  }
 }
 
 .dg-generate-button {

@@ -17,7 +17,7 @@ const NavTabs = props => {
   };
 
   return (
-    <div className="tabs is-fullwidth is-centered dg-nav-tabs">
+    <div className="tabs is-small is-fullwidth is-centered dg-nav-tabs">
       <ul>
         <li className={isActive(paths.generator)}>
           <a onClick={() => linkTo(paths.generator)}>Generator</a>
