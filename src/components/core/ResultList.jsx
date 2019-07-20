@@ -6,6 +6,10 @@ const ResultList = props => {
 
   return (
     <>
+      <ResultItem label="UUID" value={data.uuid} />
+
+      <hr />
+
       <ResultItem label="Name" value={data.name} />
       <ResultItem label="Email" value={data.email} />
     </>

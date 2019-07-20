@@ -46,7 +46,7 @@ const LocaleSelect = props => {
   ];
 
   return (
-    <div className="select">
+    <div className="select is-small">
       <select onChange={onChange}>
         {localeOptions.map(locale => (
           <option selected={selected === locale} value={locale}>{locale}</option>

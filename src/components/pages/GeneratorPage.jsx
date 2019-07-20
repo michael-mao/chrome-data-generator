@@ -27,6 +27,7 @@ const GeneratorPage = props => {
     }
 
     setResults({
+      uuid: faker.random.uuid(),
       name: faker.name.findName(),
       email: faker.internet.exampleEmail(),
     });
@@ -39,7 +40,7 @@ const GeneratorPage = props => {
           <LocaleSelect selected={DEFAULT_LOCALE} onChange={onChangeLocale} />
         </div>
         <div className="column">
-          <input className="input" type="number" placeholder="Seed" onChange={onChangeSeed} />
+          <input className="input is-small" type="number" placeholder="Seed" onChange={onChangeSeed} />
         </div>
       </div>
       <button className="button is-primary is-fullwidth dg-generate-button" onClick={onGenerate}>Generate</button>
