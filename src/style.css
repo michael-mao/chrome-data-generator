@@ -1,6 +1,6 @@
 html, body {
-  height: 100%;
-  width: 100%;
+  height: 500px;
+  width: 300px;
   padding: 0;
   margin: 0;
   background: #FAFAFA;
@@ -9,4 +9,24 @@ html, body {
   color: #444;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Bulma overrides */
+.container {
+  padding: 12px;
+}
+
+.columns:not(:last-child) {
+  margin-bottom: 0;
+}
+
+/* Custom */
+.dg-nav-tabs {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.dg-generate-button {
+  margin-bottom: 12px;
 }

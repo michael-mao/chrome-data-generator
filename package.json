@@ -12,8 +12,14 @@
   "eslintConfig": {
     "extends": "eslint-config-synacor",
     "rules": {
-      "comma-dangle": ["error", "always-multiline"],
-      "indent": ["error", 2],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "indent": [
+        "error",
+        2
+      ],
       "lines-around-comment": "off",
       "no-unused-vars": "warn",
       "react/sort-comp": "off"
@@ -30,6 +36,7 @@
   },
   "dependencies": {
     "bulma": "^0.7.5",
+    "faker": "^4.1.0",
     "preact": "10.0.0-rc.0",
     "preact-render-to-string": "^4.1.0",
     "preact-router": "^3.0.1"
