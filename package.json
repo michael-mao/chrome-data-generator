@@ -12,10 +12,11 @@
   "eslintConfig": {
     "extends": "eslint-config-synacor",
     "rules": {
-      "no-unused-vars": "warn",
-      "react/sort-comp": "off",
+      "comma-dangle": ["error", "always-multiline"],
+      "indent": ["error", 2],
       "lines-around-comment": "off",
-      "react/prefer-stateless-function": "off"
+      "no-unused-vars": "warn",
+      "react/sort-comp": "off"
     }
   },
   "eslintIgnore": [
@@ -23,8 +24,8 @@
   ],
   "devDependencies": {
     "copy-webpack-plugin": "^5.0.3",
-    "eslint": "^4.5.0",
-    "eslint-config-synacor": "^1.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-synacor": "^3.0.4",
     "preact-cli": "^3.0.0-rc.3"
   },
   "dependencies": {
