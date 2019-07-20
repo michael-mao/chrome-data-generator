@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "chrome-data-generator",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "serve": "preact build && preact serve",
+    "build": "preact build",
+    "watch": "preact watch",
+    "lint": "eslint src"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-synacor",
+    "rules": {
+      "no-unused-vars": "warn",
+      "react/sort-comp": "off",
+      "lines-around-comment": "off",
+      "react/prefer-stateless-function": "off"
+    }
+  },
+  "eslintIgnore": [
+    "build/*"
+  ],
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-synacor": "^1.1.0",
+    "preact-cli": "^3.0.0-rc.3"
+  },
+  "dependencies": {
+    "bulma": "^0.7.5",
+    "preact": "10.0.0-rc.0",
+    "preact-render-to-string": "^4.1.0",
+    "preact-router": "^3.0.1"
+  }
+}
