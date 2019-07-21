@@ -1,8 +1,10 @@
 import { h } from 'preact';
 
+import Page from '../core/Page';
+
 const SettingsPage = props => {
   return (
-    <div>Settings Page</div>
+    <Page>Settings Page</Page>
   );
 };
 

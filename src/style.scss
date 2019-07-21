@@ -10,15 +10,15 @@ html, body {
 }
 
 /* Bulma overrides */
-.container {
-  padding: 12px;
-}
-
 .columns:not(:last-child) {
   margin-bottom: 0;
 }
 
 /* Custom */
+.dg-page {
+  padding: 12px;
+}
+
 .dg-nav-tabs {
   width: 100%;
   position: absolute;

@@ -1,7 +1,10 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
+import { route } from 'preact-router';
 import faker from 'faker';
 
+import paths from '../../routePaths';
+import Page from '../core/Page';
 import LocaleSelect from '../core/LocaleSelect';
 import ResultList from '../core/ResultList';
 
@@ -34,7 +37,7 @@ const GeneratorPage = props => {
   };
 
   return (
-    <div className="container">
+    <Page>
       <div className="columns is-vcentered is-mobile">
         <div className="column">
           <LocaleSelect selected={DEFAULT_LOCALE} onChange={onChangeLocale} />
@@ -45,8 +48,11 @@ const GeneratorPage = props => {
       </div>
       <button className="button is-primary is-fullwidth dg-generate-button" onClick={onGenerate}>Generate</button>
 
+      <hr />
+
       <ResultList data={results} />
-    </div>
+      <button className="button is-fullwidth is-small" onClick={() => route(paths.addGenerator)}>Add Field</button>
+    </Page>
   );
 };
 
