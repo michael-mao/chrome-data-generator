@@ -4,6 +4,7 @@ import { route } from 'preact-router';
 
 import paths from '../../routePaths';
 import Page from '../core/Page';
+import storage from '../../services/storageService';
 
 const AddGeneratorPage = props => {
   const generatorOptions = [{
@@ -40,7 +41,17 @@ const AddGeneratorPage = props => {
   }
 
   const onAdd = () => {
-    console.log(selectedCategory, selectedGenerator);
+    storage.get({ generators: [] })
+      .then(result => {
+        result.generators.push({
+          category: selectedCategory,
+          generator: selectedGenerator,
+        });
+        return storage.set({ generators: result.generators });
+      })
+      .then(() => {
+        route(paths.generator);
+      });
   };
 
   return (

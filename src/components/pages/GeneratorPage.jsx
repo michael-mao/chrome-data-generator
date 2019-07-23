@@ -1,59 +1,75 @@
-import { h } from 'preact';
-import { useState } from 'preact/hooks';
+import { h, Component } from 'preact';
 import { route } from 'preact-router';
 import faker from 'faker';
 
 import paths from '../../routePaths';
 import Page from '../core/Page';
 import LocaleSelect from '../core/LocaleSelect';
-import ResultList from '../core/ResultList';
+import GeneratorField from '../core/GeneratorField';
+import storage from '../../services/storageService';
 
 const DEFAULT_LOCALE = 'en';
 
-const GeneratorPage = props => {
-  const [locale, setLocale] = useState(DEFAULT_LOCALE);
-  const [seed, setSeed] = useState(null);
-  const [results, setResults] = useState({});
-
-  const onChangeLocale = event => {
-    setLocale(event.target.value);
+class GeneratorPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      locale: DEFAULT_LOCALE,
+      seed: null,
+      generators: [],
+    }
   }
 
-  const onChangeSeed = event => {
-    setSeed(event.target.valueAsNumber);
+  onChangeLocale = event => {
+    this.setState({ locale: event.target.value });
   }
 
-  const onGenerate = () => {
-    faker.locale = locale;
-    if (seed !== null) {
-      faker.seed(seed);
+  onChangeSeed = event => {
+    this.setState({ seed: event.target.valueAsNumber });
+  }
+
+  onGenerate = () => {
+    faker.locale = this.state.locale;
+    if (this.state.seed !== null) {
+      faker.seed(this.state.seed);
     }
 
-    setResults({
-      uuid: faker.random.uuid(),
-      name: faker.name.findName(),
-      email: faker.internet.exampleEmail(),
+    const generatorsWithValue = this.state.generators.map(generator => {
+      return {
+        ...generator,
+        value: faker[generator.category][generator.generator](),
+      }
     });
+    this.setState({ generators: generatorsWithValue });
   };
 
-  return (
-    <Page>
-      <div className="columns is-vcentered is-mobile">
-        <div className="column">
-          <LocaleSelect selected={DEFAULT_LOCALE} onChange={onChangeLocale} />
-        </div>
-        <div className="column">
-          <input className="input is-small" type="number" placeholder="Seed" onChange={onChangeSeed} />
-        </div>
-      </div>
-      <button className="button is-primary is-fullwidth dg-generate-button" onClick={onGenerate}>Generate</button>
+  componentDidMount() {
+    storage.get({ generators: [] })
+      .then(result => {
+        this.setState({ generators: result.generators });
+      });
+  }
 
-      <hr />
+  render() {
+    return (
+      <Page>
+        <div className="columns is-vcentered is-mobile">
+          <div className="column">
+            <LocaleSelect selected={DEFAULT_LOCALE} onChange={this.onChangeLocale} />
+          </div>
+          <div className="column">
+            <input className="input is-small" type="number" placeholder="Seed" onChange={this.onChangeSeed} />
+          </div>
+        </div>
+        <button className="button is-primary is-fullwidth dg-generate-button" onClick={this.onGenerate}>Generate</button>
 
-      <ResultList data={results} />
-      <button className="button is-fullwidth is-small" onClick={() => route(paths.addGenerator)}>Add Field</button>
-    </Page>
-  );
-};
+        <hr />
+
+        {this.state.generators.map(generator => <GeneratorField generator={generator} />)}
+        <button className="button is-fullwidth is-small" onClick={() => route(paths.addGenerator)}>Add Field</button>
+      </Page>
+    );
+  }
+}
 
 export default GeneratorPage;
