@@ -17,7 +17,8 @@ class GeneratorPage extends Component {
       locale: DEFAULT_LOCALE,
       seed: null,
       generators: [],
-    }
+      editMode: false,
+    };
   }
 
   onChangeLocale = event => {
@@ -43,6 +44,29 @@ class GeneratorPage extends Component {
     this.setState({ generators: generatorsWithValue });
   };
 
+  onEnterEditMode = () => {
+    this.setState({ editMode: true });
+  };
+
+  onExitEditMode = () => {
+    this.setState({ editMode: false });
+  };
+
+  onRemoveGenerator = generatorToRemove => {
+    storage.get({ generators: [] })
+      .then(result => {
+        const toRemoveIndex = result.generators.findIndex(generator => {
+          return (
+            generator.category === generatorToRemove.category
+            && generator.generator === generatorToRemove.generator
+          );
+        });
+        result.generators.splice(toRemoveIndex, 1);
+        this.setState({ generators: result.generators });
+        return storage.set({ generators: result.generators });
+      });
+  };
+
   componentDidMount() {
     storage.get({ generators: [] })
       .then(result => {
@@ -65,8 +89,10 @@ class GeneratorPage extends Component {
 
         <hr />
 
-        {this.state.generators.map(generator => <GeneratorField generator={generator} />)}
-        <button className="button is-text is-fullwidth is-small" onClick={() => route(paths.addGenerator)}>Customize</button>
+        {this.state.generators.map(generator => <GeneratorField generator={generator} showRemoveButton={this.state.editMode} onRemove={this.onRemoveGenerator} />)}
+        <button className={`button is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={() => route(paths.addGenerator)}>Add Field</button>
+        <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={this.onExitEditMode}>Save Changes</button>
+        <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? 'is-hidden' : ''}`} onClick={this.onEnterEditMode}>Customize</button>
       </Page>
     );
   }
