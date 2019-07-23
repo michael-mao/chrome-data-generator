@@ -58,15 +58,15 @@ class GeneratorPage extends Component {
             <LocaleSelect selected={DEFAULT_LOCALE} onChange={this.onChangeLocale} />
           </div>
           <div className="column">
-            <input className="input is-small" type="number" placeholder="Seed" onChange={this.onChangeSeed} />
+            <input className="input is-small" type="number" placeholder="Seed (optional)" onChange={this.onChangeSeed} />
           </div>
         </div>
-        <button className="button is-primary is-fullwidth dg-generate-button" onClick={this.onGenerate}>Generate</button>
+        <button className="button is-primary is-fullwidth is-small dg-generate-button" onClick={this.onGenerate}>Generate</button>
 
         <hr />
 
         {this.state.generators.map(generator => <GeneratorField generator={generator} />)}
-        <button className="button is-fullwidth is-small" onClick={() => route(paths.addGenerator)}>Add Field</button>
+        <button className="button is-text is-fullwidth is-small" onClick={() => route(paths.addGenerator)}>Customize</button>
       </Page>
     );
   }
