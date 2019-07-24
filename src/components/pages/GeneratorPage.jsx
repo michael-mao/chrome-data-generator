@@ -6,7 +6,9 @@ import paths from '../../routePaths';
 import Page from '../core/Page';
 import LocaleSelect from '../core/LocaleSelect';
 import GeneratorField from '../core/GeneratorField';
+import AddGeneratorPage from './AddGeneratorPage';
 import storage from '../../services/storageService';
+import utils from '../../services/utilsService';
 
 const DEFAULT_LOCALE = 'en';
 
@@ -17,6 +19,7 @@ class GeneratorPage extends Component {
       locale: DEFAULT_LOCALE,
       seed: null,
       generators: [],
+      showAddGeneratorPage: false,
       editMode: false,
     };
   }
@@ -44,6 +47,14 @@ class GeneratorPage extends Component {
     this.setState({ generators: generatorsWithValue });
   };
 
+  onShowAddGeneratorPage = () => {
+    this.setState({ showAddGeneratorPage: true });
+  };
+
+  onHideAddGeneratorPage = () => {
+    this.setState({ showAddGeneratorPage: false });
+  };
+
   onEnterEditMode = () => {
     this.setState({ editMode: true });
   };
@@ -52,19 +63,28 @@ class GeneratorPage extends Component {
     this.setState({ editMode: false });
   };
 
+  onAddGenerator = generatorToAdd => {
+    const updatedGenerators = utils.deepCopy(this.state.generators);
+    updatedGenerators.push(generatorToAdd);
+    this.setState({ generators: updatedGenerators });
+    this.onHideAddGeneratorPage();
+  };
+
   onRemoveGenerator = generatorToRemove => {
-    storage.get({ generators: [] })
-      .then(result => {
-        const toRemoveIndex = result.generators.findIndex(generator => {
-          return (
-            generator.category === generatorToRemove.category
-            && generator.generator === generatorToRemove.generator
-          );
-        });
-        result.generators.splice(toRemoveIndex, 1);
-        this.setState({ generators: result.generators });
-        return storage.set({ generators: result.generators });
-      });
+    const updatedGenerators = utils.deepCopy(this.state.generators);
+    const toRemoveIndex = updatedGenerators.findIndex(generator => {
+      return (
+        generator.category === generatorToRemove.category
+        && generator.generator === generatorToRemove.generator
+      );
+    });
+    updatedGenerators.splice(toRemoveIndex, 1);
+    this.setState({ generators: updatedGenerators });
+  };
+
+  onSaveChanges = () => {
+    storage.set({ generators: this.state.generators });
+    this.onExitEditMode();
   };
 
   componentDidMount() {
@@ -90,9 +110,11 @@ class GeneratorPage extends Component {
         <hr />
 
         {this.state.generators.map(generator => <GeneratorField generator={generator} showRemoveButton={this.state.editMode} onRemove={this.onRemoveGenerator} />)}
-        <button className={`button is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={() => route(paths.addGenerator)}>Add Field</button>
-        <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={this.onExitEditMode}>Save Changes</button>
+        <button className={`button is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={this.onShowAddGeneratorPage}>Add Field</button>
+        <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={this.onSaveChanges}>Save Changes</button>
         <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? 'is-hidden' : ''}`} onClick={this.onEnterEditMode}>Customize</button>
+
+        <AddGeneratorPage isVisible={this.state.showAddGeneratorPage} onHide={this.onHideAddGeneratorPage} onAdd={this.onAddGenerator} />
       </Page>
     );
   }

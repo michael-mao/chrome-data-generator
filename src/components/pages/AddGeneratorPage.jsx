@@ -1,12 +1,11 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
-import { route } from 'preact-router';
 
-import paths from '../../routePaths';
-import Page from '../core/Page';
-import storage from '../../services/storageService';
+import OverlayPage from '../core/OverlayPage';
 
 const AddGeneratorPage = props => {
+  const { isVisible, onHide, onAdd } = props;
+
   const generatorOptions = [{
     category: "address",
     generators: [
@@ -40,22 +39,8 @@ const AddGeneratorPage = props => {
     setSelectedGenerator(event.target.value);
   }
 
-  const onAdd = () => {
-    storage.get({ generators: [] })
-      .then(result => {
-        result.generators.push({
-          category: selectedCategory,
-          generator: selectedGenerator,
-        });
-        return storage.set({ generators: result.generators });
-      })
-      .then(() => {
-        route(paths.generator);
-      });
-  };
-
   return (
-    <Page>
+    <OverlayPage isVisible={isVisible}>
       <h1 className="title is-4">Add Generator</h1>
       <div className="field">
         <label className="label">Category</label>
@@ -81,9 +66,9 @@ const AddGeneratorPage = props => {
           </div>
         </div>
       </div>
-      <button className="button" onClick={onAdd}>Add</button>
-      <button className="button is-text" onClick={() => route(paths.generator)}>Back</button>
-    </Page>
+      <button className="button" onClick={() => onAdd({ category: selectedCategory, generator: selectedGenerator })}>Add</button>
+      <button className="button is-text" onClick={onHide}>Back</button>
+    </OverlayPage>
   );
 };
 

@@ -7,7 +7,6 @@ import NavTabs from './core/NavTabs';
 import Redirect from './core/Redirect';
 import GeneratorPage from './pages/GeneratorPage';
 import SettingsPage from './pages/SettingsPage';
-import AddGeneratorPage from './pages/AddGeneratorPage';
 
 const App = props => {
   // TODO: for development, remove
@@ -16,7 +15,6 @@ const App = props => {
   return (
     <div id="app">
       <Router>
-        <AddGeneratorPage path={paths.addGenerator} />
         <GeneratorPage path={paths.generator} />
         <SettingsPage path={paths.settings} />
         <Redirect default to={paths.generator} />

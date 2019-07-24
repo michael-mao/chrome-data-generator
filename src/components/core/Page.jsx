@@ -4,7 +4,7 @@ const Page = props => {
   const { children } = props;
 
   return (
-    <div className="container dg-page">
+    <div className="dg-page">
       {children}
     </div>
   );
