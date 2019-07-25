@@ -66,8 +66,8 @@ const AddGeneratorPage = props => {
           </div>
         </div>
       </div>
-      <button className="button" onClick={() => onAdd({ category: selectedCategory, generator: selectedGenerator })}>Add</button>
-      <button className="button is-text" onClick={onHide}>Back</button>
+      <button className="button is-small" onClick={() => onAdd({ category: selectedCategory, generator: selectedGenerator })}>Add</button>
+      <button className="button is-text is-small" onClick={onHide}>Back</button>
     </OverlayPage>
   );
 };

@@ -8,8 +8,6 @@ const Redirect = props => {
   useEffect(() => {
     route(to, true);
   });
-
-  return null;
 };
 
 export default Redirect;
