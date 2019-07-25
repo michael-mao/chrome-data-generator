@@ -1,8 +1,6 @@
 import { h, Component } from 'preact';
-import { route } from 'preact-router';
 import faker from 'faker';
 
-import paths from '../../routePaths';
 import Page from '../core/Page';
 import LocaleSelect from '../core/LocaleSelect';
 import GeneratorField from '../core/GeneratorField';
@@ -109,10 +107,12 @@ class GeneratorPage extends Component {
 
         <hr />
 
-        {this.state.generators.map(generator => <GeneratorField generator={generator} showRemoveButton={this.state.editMode} onRemove={this.onRemoveGenerator} />)}
-        <button className={`button is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={this.onShowAddGeneratorPage}>Add Field</button>
-        <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={this.onSaveChanges}>Save Changes</button>
-        <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? 'is-hidden' : ''}`} onClick={this.onEnterEditMode}>Customize</button>
+        <div className="dg-generator-page-content">
+          {this.state.generators.map(generator => <GeneratorField generator={generator} showRemoveButton={this.state.editMode} onRemove={this.onRemoveGenerator} />)}
+          <button className={`button is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={this.onShowAddGeneratorPage}>Add Field</button>
+          <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={this.onSaveChanges}>Save Changes</button>
+          <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? 'is-hidden' : ''}`} onClick={this.onEnterEditMode}>Customize</button>
+        </div>
 
         <AddGeneratorPage isVisible={this.state.showAddGeneratorPage} onHide={this.onHideAddGeneratorPage} onAdd={this.onAddGenerator} />
       </Page>

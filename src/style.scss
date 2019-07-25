@@ -3,15 +3,10 @@
 html, body {
   height: 500px;
   width: 300px;
-  background: $background;
+  background: $white-bis;
   font-family: 'Helvetica Neue', arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-hr {
-  background: $grey-lighter;
-  height: 1px;
 }
 
 /* Bulma overrides */
@@ -26,7 +21,7 @@ hr {
 
 .dg-overlay {
   z-index: 10;
-  background: $background;
+  background: $white-bis;
 }
 
 .dg-nav-tabs {
@@ -41,4 +36,9 @@ hr {
 
 .dg-generate-button {
   margin-bottom: 12px;
+}
+
+.dg-generator-page-content {
+  height: 330px;
+  overflow-y: scroll;
 }

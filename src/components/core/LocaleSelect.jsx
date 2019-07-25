@@ -1,4 +1,6 @@
 import { h } from 'preact';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 const LocaleSelect = props => {
   const { onChange, selected } = props;
@@ -46,12 +48,19 @@ const LocaleSelect = props => {
   ];
 
   return (
-    <div className="select is-small">
-      <select onChange={onChange}>
-        {localeOptions.map(locale => (
-          <option selected={selected === locale} value={locale}>{locale}</option>
-        ))}
-      </select>
+    <div className="field">
+      <div className="control has-icons-left">
+        <div className="select is-small">
+          <select onChange={onChange}>
+            {localeOptions.map(locale => (
+              <option selected={selected === locale} value={locale}>{locale}</option>
+            ))}
+          </select>
+        </div>
+        <span className="icon is-small is-left">
+          <FontAwesomeIcon icon={faGlobe} />
+        </span>
+      </div>
     </div>
   );
 };
