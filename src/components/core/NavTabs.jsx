@@ -2,11 +2,12 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { route } from 'preact-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faToolbox, faSlidersH } from '@fortawesome/free-solid-svg-icons';
 
 import paths from '../../routePaths';
 
 const NavTabs = props => {
+  const { tabs } = props;
+
   const [currentPath, setCurrentPath] = useState(paths.generator);
 
   const linkTo = path => {
@@ -21,22 +22,18 @@ const NavTabs = props => {
   return (
     <div className="tabs is-small is-fullwidth is-centered dg-nav-tabs">
       <ul>
-        <li className={isActive(paths.generator)}>
-          <a onClick={() => linkTo(paths.generator)}>
-            <span className="icon is-small">
-              <FontAwesomeIcon icon={faToolbox} />
-            </span>
-            <span>Generator</span>
-          </a>
-        </li>
-        <li className={isActive(paths.settings)}>
-          <a onClick={() => linkTo(paths.settings)}>
-            <span className="icon is-small">
-              <FontAwesomeIcon icon={faSlidersH} />
-            </span>
-            <span>Settings</span>
-          </a>
-        </li>
+        {tabs.map(tab => (
+          <li className={isActive(tab.path)}>
+            <a onClick={() => linkTo(tab.path)}>
+              {tab.icon && (
+                <span className="icon is-small">
+                  <FontAwesomeIcon icon={tab.icon} />
+                </span>
+              )}
+              <span>{tab.name}</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   )
