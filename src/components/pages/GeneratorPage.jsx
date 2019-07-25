@@ -103,12 +103,16 @@ class GeneratorPage extends Component {
             <input className="input is-small" type="number" placeholder="Seed (optional)" onChange={this.onChangeSeed} />
           </div>
         </div>
-        <button className="button is-primary is-fullwidth is-small dg-generate-button" onClick={this.onGenerate}>Generate</button>
+        <button className="button is-primary is-fullwidth is-small dg-generate-button" disabled={this.state.generators.length ? undefined : "disabled"} onClick={this.onGenerate}>Generate</button>
 
         <hr />
 
         <div className="dg-generator-page-content">
-          {this.state.generators.map(generator => <GeneratorField generator={generator} showRemoveButton={this.state.editMode} onRemove={this.onRemoveGenerator} />)}
+          {this.state.generators.length ?
+            this.state.generators.map(generator => <GeneratorField generator={generator} showRemoveButton={this.state.editMode} onRemove={this.onRemoveGenerator} />)
+            :
+            <p className="is-size-7 is-italic has-text-centered">You have no generators.</p>
+          }
           <button className={`button is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={this.onShowAddGeneratorPage}>Add Field</button>
           <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? '' : 'is-hidden'}`} onClick={this.onSaveChanges}>Save Changes</button>
           <button className={`button is-text is-fullwidth is-small ${this.state.editMode ? 'is-hidden' : ''}`} onClick={this.onEnterEditMode}>Customize</button>
