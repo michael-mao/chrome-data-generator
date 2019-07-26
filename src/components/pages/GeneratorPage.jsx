@@ -5,8 +5,8 @@ import Page from '../core/Page';
 import LocaleSelect from '../core/LocaleSelect';
 import GeneratorField from '../core/GeneratorField';
 import AddGeneratorPage from './AddGeneratorPage';
-import storage from '../../services/storageService';
-import utils from '../../services/utilsService';
+import storage from '../../services/storage';
+import utils from '../../services/utils';
 import { DEFAULT_LOCALE } from '../../constants';
 
 class GeneratorPage extends Component {

@@ -1,4 +1,4 @@
-import utils from './utilsService';
+import utils from './utils';
 
 class StorageBase {
   static async get() {

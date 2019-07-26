@@ -3,7 +3,7 @@ import { useState, useEffect } from 'preact/hooks';
 
 import Page from '../core/Page';
 import LocaleSelect from '../core/LocaleSelect';
-import storage from '../../services/storageService';
+import storage from '../../services/storage';
 import { DEFAULT_LOCALE } from '../../constants';
 
 const SettingsPage = props => {

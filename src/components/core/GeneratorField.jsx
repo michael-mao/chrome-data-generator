@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-import utils from '../../services/utilsService';
+import utils from '../../services/utils';
 
 const GeneratorField = props => {
   const { generator, showRemoveButton, onRemove } = props;
