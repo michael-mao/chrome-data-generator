@@ -18,8 +18,8 @@ const SettingsPage = props => {
     storage.set({ userLocale: event.target.value });
   };
 
-  const onRemoveAll = () => {
-    storage.set({ generators: [] });
+  const onResetSettings = () => {
+    storage.clear();
   };
 
   return (
@@ -28,7 +28,7 @@ const SettingsPage = props => {
 
       <hr />
 
-      <button className="button is-danger is-small is-fullwidth" onClick={onRemoveAll}>Remove All Generators</button>
+      <button className="button is-danger is-small is-fullwidth" onClick={onResetSettings}>Reset All Settings</button>
     </Page>
   );
 };

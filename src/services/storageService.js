@@ -7,6 +7,9 @@ class StorageBase {
   static async set() {
     throw new Error('Not Implemented');
   }
+  static async clear() {
+    throw new Error('Not Implemented');
+  }
 }
 
 class ChromeStorage extends StorageBase {
@@ -19,6 +22,12 @@ class ChromeStorage extends StorageBase {
   static async set(data) {
     return new Promise((resolve, reject) => {
       chrome.storage.sync.set(data, resolve);
+    });
+  }
+
+  static async clear() {
+    return new Promise((resolve, reject) => {
+      chrome.storage.sync.clear(resolve);
     });
   }
 }
@@ -48,6 +57,11 @@ class LocalStorage extends StorageBase {
     const existingData = JSON.parse(localStorage.getItem(this.LS_KEY)) || {};
     const updatedData = Object.assign(existingData, data);
     localStorage.setItem(this.LS_KEY, JSON.stringify(updatedData));
+    return Promise.resolve();
+  }
+
+  static async clear() {
+    localStorage.removeItem(this.LS_KEY);
     return Promise.resolve();
   }
 }
