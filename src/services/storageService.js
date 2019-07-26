@@ -15,7 +15,9 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   // uses localStorage to mock chrome.storage api
   storage.set = data => {
-    localStorage.setItem(LS_KEY, JSON.stringify(data));
+    const existingData = JSON.parse(localStorage.getItem(LS_KEY)) || {};
+    const updatedData = Object.assign(existingData, data);
+    localStorage.setItem(LS_KEY, JSON.stringify(updatedData));
     return Promise.resolve();
   };
   storage.get = keys => {

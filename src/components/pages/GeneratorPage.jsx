@@ -7,8 +7,7 @@ import GeneratorField from '../core/GeneratorField';
 import AddGeneratorPage from './AddGeneratorPage';
 import storage from '../../services/storageService';
 import utils from '../../services/utilsService';
-
-const DEFAULT_LOCALE = 'en';
+import { DEFAULT_LOCALE } from '../../constants';
 
 class GeneratorPage extends Component {
   constructor(props) {
@@ -86,9 +85,9 @@ class GeneratorPage extends Component {
   };
 
   componentDidMount() {
-    storage.get({ generators: [] })
+    storage.get({ generators: [], userLocale: DEFAULT_LOCALE })
       .then(result => {
-        this.setState({ generators: result.generators });
+        this.setState({ generators: result.generators, locale: result.userLocale });
       });
   }
 
@@ -97,7 +96,7 @@ class GeneratorPage extends Component {
       <Page>
         <div className="columns is-vcentered is-mobile">
           <div className="column">
-            <LocaleSelect selected={DEFAULT_LOCALE} onChange={this.onChangeLocale} />
+            <LocaleSelect selected={this.state.locale} onChange={this.onChangeLocale} />
           </div>
           <div className="column">
             <input className="input is-small" type="number" placeholder="Seed (optional)" onChange={this.onChangeSeed} />

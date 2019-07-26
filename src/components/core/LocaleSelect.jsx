@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 const LocaleSelect = props => {
-  const { onChange, selected } = props;
+  const { onChange, selected, fieldLabel } = props;
 
   const localeOptions = [
     'az',
@@ -49,8 +49,11 @@ const LocaleSelect = props => {
 
   return (
     <div className="field">
+      {fieldLabel && (
+        <label className="label is-small">{fieldLabel}</label>
+      )}
       <div className="control has-icons-left">
-        <div className="select is-small">
+        <div className="select is-small is-fullwidth ">
           <select onChange={onChange}>
             {localeOptions.map(locale => (
               <option selected={selected === locale} value={locale}>{locale}</option>
