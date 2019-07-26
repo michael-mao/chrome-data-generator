@@ -7,4 +7,8 @@ export default {
   deepCopy(value) {
     return JSON.parse(JSON.stringify(value));
   },
+
+  isProduction() {
+    return process.env.NODE_ENV === 'production';
+  },
 };
