@@ -6,7 +6,7 @@ import LocaleSelect from '../core/LocaleSelect';
 import storage from '../../services/storage';
 import { DEFAULT_LOCALE } from '../../constants';
 
-const SettingsPage = props => {
+const SettingsPage = _props => {
   const [userLocale, setUserLocale] = useState(DEFAULT_LOCALE);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const SettingsPage = props => {
 
       <hr />
 
-      <button className="button is-danger is-small is-fullwidth" onClick={onResetSettings}>Reset All Settings</button>
+      <button className="button is-danger is-small is-fullwidth" type="button" onClick={onResetSettings}>Reset All Settings</button>
     </Page>
   );
 };

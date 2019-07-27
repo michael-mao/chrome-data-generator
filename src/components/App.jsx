@@ -9,7 +9,7 @@ import Redirect from './core/Redirect';
 import GeneratorPage from './pages/GeneratorPage';
 import SettingsPage from './pages/SettingsPage';
 
-const App = props => {
+const App = _props => {
   // TODO: for development, remove
   window.faker = faker;
 
@@ -33,6 +33,6 @@ const App = props => {
       <NavTabs tabs={tabs} />
     </div>
   );
-}
+};
 
 export default App;

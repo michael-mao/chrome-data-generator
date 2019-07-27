@@ -15,9 +15,7 @@ const NavTabs = props => {
     setCurrentPath(path);
   };
 
-  const isActive = path => {
-    return currentPath === path ? "is-active" : "";
-  };
+  const isActive = path => (currentPath === path ? 'is-active' : '');
 
   return (
     <div className="tabs is-small is-fullwidth is-centered dg-nav-tabs">
@@ -36,7 +34,7 @@ const NavTabs = props => {
         ))}
       </ul>
     </div>
-  )
+  );
 };
 
 export default NavTabs;

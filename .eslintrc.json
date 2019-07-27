@@ -1,0 +1,32 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "globals": {
+    "chrome": "readonly"
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "airbnb/rules/react"
+  ],
+  "rules": {
+    "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
+    "arrow-parens": ["error", "as-needed"],
+    "comma-dangle": ["error", "always-multiline"],
+    "max-len": "off",
+    "no-unused-vars": ["error", { "varsIgnorePattern": "^h$", "argsIgnorePattern": "^_" }],
+
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off"
+  }
+}

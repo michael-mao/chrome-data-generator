@@ -7,15 +7,15 @@ const GeneratorField = props => {
 
   return (
     <>
-    <label className="label is-size-7 is-marginless">{utils.camelCaseToTitleCase(generator.generator)}</label>
-    <div className={`field ${showRemoveButton ? 'is-grouped': ''}`}>
-      <div className={`control ${showRemoveButton ? 'is-expanded' : ''}`}>
-        <input className="input is-small" type="text" value={generator.value || ""} readonly />
+      <label className="label is-size-7 is-marginless">{utils.camelCaseToTitleCase(generator.generator)}</label>
+      <div className={`field ${showRemoveButton ? 'is-grouped' : ''}`}>
+        <div className={`control ${showRemoveButton ? 'is-expanded' : ''}`}>
+          <input className="input is-small" type="text" value={generator.value || ''} readOnly />
+        </div>
+        <div className={`control ${showRemoveButton ? '' : 'is-hidden'}`}>
+          <button className="button is-text is-small" type="button" onClick={() => onRemove(generator)}>Remove</button>
+        </div>
       </div>
-      <div className={`control ${showRemoveButton ? '' : 'is-hidden'}`}>
-        <button className="button is-text is-small" onClick={() => onRemove(generator)}>Remove</button>
-      </div>
-    </div>
     </>
   );
 };

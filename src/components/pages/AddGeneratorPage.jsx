@@ -7,24 +7,24 @@ const AddGeneratorPage = props => {
   const { isVisible, onHide, onAdd } = props;
 
   const generatorOptions = [{
-    category: "address",
+    category: 'address',
     generators: [
-      "zipCode",
-      "city",
-      "cityPrefix",
-      "citySuffix",
-      "streetName",
-      "streetAddress",
-      "streetSuffix",
-      "streetPrefix",
-      "secondaryAddress",
-      "county",
-      "country",
-      "countryCode",
-      "state",
-      "stateAbbr",
-      "latitude",
-      "longitude",
+      'zipCode',
+      'city',
+      'cityPrefix',
+      'citySuffix',
+      'streetName',
+      'streetAddress',
+      'streetSuffix',
+      'streetPrefix',
+      'secondaryAddress',
+      'county',
+      'country',
+      'countryCode',
+      'state',
+      'stateAbbr',
+      'latitude',
+      'longitude',
     ],
   }];
 
@@ -37,7 +37,7 @@ const AddGeneratorPage = props => {
 
   const onChangeGenerator = event => {
     setSelectedGenerator(event.target.value);
-  }
+  };
 
   return (
     <OverlayPage isVisible={isVisible}>
@@ -66,8 +66,8 @@ const AddGeneratorPage = props => {
           </div>
         </div>
       </div>
-      <button className="button is-small" onClick={() => onAdd({ category: selectedCategory, generator: selectedGenerator })}>Add</button>
-      <button className="button is-text is-small" onClick={onHide}>Back</button>
+      <button className="button is-small" type="button" onClick={() => onAdd({ category: selectedCategory, generator: selectedGenerator })}>Add</button>
+      <button className="button is-text is-small" type="button" onClick={onHide}>Back</button>
     </OverlayPage>
   );
 };

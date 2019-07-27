@@ -4,9 +4,11 @@ class StorageBase {
   static async get() {
     throw new Error('Not Implemented');
   }
+
   static async set() {
     throw new Error('Not Implemented');
   }
+
   static async clear() {
     throw new Error('Not Implemented');
   }
@@ -14,19 +16,19 @@ class StorageBase {
 
 class ChromeStorage extends StorageBase {
   static async get(keys) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       chrome.storage.sync.get(keys, resolve);
     });
   }
 
   static async set(data) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       chrome.storage.sync.set(data, resolve);
     });
   }
 
   static async clear() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       chrome.storage.sync.clear(resolve);
     });
   }
@@ -39,16 +41,16 @@ class LocalStorage extends StorageBase {
     const data = JSON.parse(localStorage.getItem(this.LS_KEY)) || {};
     const result = {};
     if (Array.isArray(keys)) {
-      keys.forEach(key => result[key] = data[key]);
+      keys.forEach(key => {
+        result[key] = data[key];
+      });
     } else if (typeof keys === 'string') {
       const key = keys;
       result[key] = data[key];
     } else if (typeof keys === 'object') {
-      for (const key in keys) {
-        if (keys.hasOwnProperty(key)) {
-          result[key] = data[key] === undefined ? keys[key] : data[key];
-        }
-      }
+      Object.keys(keys).forEach(key => {
+        result[key] = data[key] === undefined ? keys[key] : data[key];
+      });
     }
     return Promise.resolve(result);
   }
@@ -68,7 +70,7 @@ class LocalStorage extends StorageBase {
 
 class StorageFactory {
   static getStorage() {
-    return utils.isProduction() ? ChromeStorage : LocalStorage
+    return utils.isProduction() ? ChromeStorage : LocalStorage;
   }
 }
 

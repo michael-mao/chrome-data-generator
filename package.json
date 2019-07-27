@@ -7,31 +7,16 @@
     "serve": "preact build && preact serve",
     "build": "preact build --no-esm --no-sw --no-prerender",
     "watch": "preact watch --no-esm",
-    "lint": "eslint src"
+    "lint": "eslint --ext .js --ext .jsx src/"
   },
-  "eslintConfig": {
-    "extends": "eslint-config-synacor",
-    "rules": {
-      "comma-dangle": [
-        "error",
-        "always-multiline"
-      ],
-      "indent": [
-        "error",
-        2
-      ],
-      "lines-around-comment": "off",
-      "no-unused-vars": "warn",
-      "react/sort-comp": "off"
-    }
-  },
-  "eslintIgnore": [
-    "build/*"
-  ],
   "devDependencies": {
+    "babel-eslint": "^10.0.2",
     "copy-webpack-plugin": "^5.0.3",
     "eslint": "^5.16.0",
-    "eslint-config-synacor": "^3.0.4",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
     "node-sass": "^4.12.0",
     "preact-cli": "^3.0.0-rc.3",
     "sass-loader": "^7.1.0"
